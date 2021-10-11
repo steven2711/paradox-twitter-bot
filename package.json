@@ -1,0 +1,29 @@
+{
+  "name": "twitter_bot",
+  "version": "1.0.0",
+  "description": "A kind of...twitter assistant.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "botmanisback",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "dotenv": "^10.0.0",
+    "twit": "^2.2.11"
+  },
+  "quokka": {
+    "babel": [
+      "es2017"
+    ],
+    "plugins": [
+      "transform-async-generator-functions"
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0"
+  }
+}
