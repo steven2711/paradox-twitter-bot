@@ -83,6 +83,31 @@ exports.tweets = [
       "Potato paradox: If potatoes consisting of 99% water dry so that they are 98% water, they lose 50% of their weight.",
     hashtags: ["#paradox", "#potato", "#language"],
   },
+  {
+    tweet:
+      "Buttered Cat Paradox: This is a combination of 'Cats always land on their feet' and 'Buttered toast always lands buttered side down.' What would happen if you attached buttered toast to the back of a cat?",
+    hashtags: ["#paradox", "#cats", "#toast", "#butteredtoast"],
+  },
+  {
+    tweet:
+      "The region-beta paradox is the phenomenon that people can sometimes recover more quickly from more intense emotions or pain than from less distressing experiences.",
+    hashtags: ["#paradox", "#psychology", "#emotions"],
+  },
+  {
+    tweet:
+      "Ironic process theory refers to the psychological process whereby deliberate attempts to suppress certain thoughts make them more likely to surface. For example, try not to think of a white bear.",
+    hashtags: ["#paradox", "#whitebear", "#psychology"],
+  },
+  {
+    tweet:
+      "Gender Paradox: Women conform more closely than men to sociolinguistics norms that are overtly prescribed, but conform less than men when they are not.",
+    hashtags: ["#paradox", "#gender"],
+  },
+  {
+    tweet:
+      "Tritone Paradox: An auditory illusion in which a sequentially played pair of Shepard tones is heard as ascending by some people and as descending by others.",
+    hashtags: ["#paradox", "#tritone", "tones"],
+  },
 ];
 
 // stopped at statistics of list
