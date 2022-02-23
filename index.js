@@ -64,28 +64,28 @@ const day = 86400000;
 
 //////////////////////////////// Follow <100 people every five hours (max 400 per day) ////////////////////////////////
 
-setInterval(() => {
-  getStatusAndAddToFriends(getDataObject, (response) => {
-    let filteredUsers = filterUsers(response);
+// setInterval(() => {
+//   getStatusAndAddToFriends(getDataObject, (response) => {
+//     let filteredUsers = filterUsers(response);
 
-    console.log(filteredUsers.length);
+//     console.log(filteredUsers.length);
 
-    let numberOfFilteredUsers = filteredUsers.length;
-    let addInterval = numberOfFilteredUsers * 1000;
+//     let numberOfFilteredUsers = filteredUsers.length;
+//     let addInterval = numberOfFilteredUsers * 1000;
 
-    for (let i = 0; i < numberOfFilteredUsers; i++) {
-      (function (i) {
-        setTimeout(function () {
-          addFriend(filteredUsers[i]);
-        }, addInterval * i);
-      })(i);
-    }
-  });
-}, fiveHour * 2);
+//     for (let i = 0; i < numberOfFilteredUsers; i++) {
+//       (function (i) {
+//         setTimeout(function () {
+//           addFriend(filteredUsers[i]);
+//         }, addInterval * i);
+//       })(i);
+//     }
+//   });
+// }, fiveHour * 2);
 
 //////////////////////////////////// Unfollow one person every 10 minutes (144 per day up to 1000) //////////////////////////////////
 
-// grabFollowingListAndRemoveNonFollowers();
+grabFollowingListAndRemoveNonFollowers();
 
 /////////////////////////////// Post random tweet ////////////////////////
 
