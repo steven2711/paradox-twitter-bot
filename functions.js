@@ -143,6 +143,18 @@ function grabFollowingListAndRemoveNonFollowers() {
   }, forLoopTimer * listMultiple + 60000);
 }
 
+async function unFollowPeople() {
+  let cursor = -1;
+  let friendList;
+  let friendListCount;
+  let forLoopTimer = 60000;
+
+  friendList = await getCurrentFriends(cursor);
+  friendListCount = friendList.friends.length;
+
+  console.log(friendList, friendListCount);
+}
+
 function getCurrentFriends(cursor) {
   return new Promise((resolve, reject) => {
     T.get(
@@ -222,6 +234,7 @@ exports.grabFollowingListAndRemoveNonFollowers =
   grabFollowingListAndRemoveNonFollowers;
 exports.getStatusAndAddToFriends = getStatusAndAddToFriends;
 exports.filterUsers = filterUsers;
+exports.unFollowPeople = unFollowPeople;
 exports.unfollowPerson = unfollowPerson;
 exports.addFriend = addFriend;
 exports.getDataObject = getDataObject;
