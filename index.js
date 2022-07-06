@@ -86,15 +86,15 @@ const day = 86400000;
 
 //////////////////////////////////// Unfollow one person every 10 minutes (144 per day up to 1000) //////////////////////////////////
 
-// grabFollowingListAndRemoveNonFollowers();
+//grabFollowingListAndRemoveNonFollowers();
 
 /////////////////////////////// Post random tweet ////////////////////////
 
 // note the start time
 //
 
-// setInterval(() => {
-//   postRandomTweet(tweets);
-// }, fiveHour);
+setInterval(() => {
+  postRandomTweet(tweets);
+}, fiveHour);
 
-// unFollowPeople();
+//unFollowPeople();
