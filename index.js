@@ -12,6 +12,7 @@ const {
   checkRelationshipAndUnfollow,
   postRandomTweet,
   unFollowPeople,
+  unFollowOnePerson,
 } = require("./functions");
 const T = new Twit(config);
 
@@ -39,6 +40,7 @@ const T = new Twit(config);
 
 const sixMinutes = 360000;
 const fiveMinutes = 300000;
+const tenMinutes = 600000;
 const hour = 3600000;
 const fiveHour = 18000000;
 const twoHour = 7200000;
@@ -93,10 +95,12 @@ const day = 86400000;
 // note the start time
 //
 
-postRandomTweet(tweets);
+// postRandomTweet(tweets);
 
 setInterval(() => {
   postRandomTweet(tweets);
 }, fiveHour);
 
-//unFollowPeople();
+setInterval(() => {
+  unFollowOnePerson();
+}, tenMinutes);

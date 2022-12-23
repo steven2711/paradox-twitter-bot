@@ -4,15 +4,7 @@ const T = new Twit(config);
 
 //////////////////////////// Adjustables //////////////////////////////
 
-let dailyKeywords = [
-  "logical reasoning",
-  "critical thinking",
-  "philosophy",
-  "theories",
-  "paradox",
-  "science",
-  "abstract",
-];
+let dailyKeywords = ["logical reasoning", "critical thinking", "philosophy", "theories", "paradox", "science", "abstract"];
 
 const getDataObject = {
   q: dailyKeywords[4],
@@ -24,30 +16,22 @@ const getDataObject = {
 ///////////////////////////////////////////////////////////////////////////
 
 function unfollowPerson(user) {
-  T.post(
-    "friendships/destroy",
-    { user_id: user.id, screen_name: user.screen_name },
-    function (err, data, response) {
-      if (err) {
-        console.log(err, "Error in unfollowPerson");
-      }
-      console.log(`You unfollowed ${user.screen_name}`);
+  T.post("friendships/destroy", { user_id: user.id, screen_name: user.screen_name }, function (err, data, response) {
+    if (err) {
+      console.log(err, "Error in unfollowPerson");
     }
-  );
+    console.log(`You unfollowed ${user.screen_name}`);
+  });
 }
 
 function addFriend(user) {
-  T.post(
-    "friendships/create",
-    { user_id: user.user_id, screen_name: user.screen_name },
-    function (err, data, response) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(`Added ${user.screen_name} to your friends list!`);
-      }
+  T.post("friendships/create", { user_id: user.user_id, screen_name: user.screen_name }, function (err, data, response) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`Added ${user.screen_name} to your friends list!`);
     }
-  );
+  });
 }
 
 function filterUsers(users) {
@@ -126,9 +110,7 @@ function grabFollowingListAndRemoveNonFollowers() {
   // The function below is set to allow the function above to complete before running.
 
   setTimeout(() => {
-    console.log(
-      `Friends list built with ${followingList.length} following. Now starting the removal process...`
-    );
+    console.log(`Friends list built with ${followingList.length} following. Now starting the removal process...`);
 
     let time = followingList.length;
 
@@ -144,39 +126,45 @@ function grabFollowingListAndRemoveNonFollowers() {
 }
 
 async function unFollowPeople() {
+  let count = 10;
   let cursor = -1;
   let friendList;
-  let friendListCount;
-  let forLoopTimer = 60000;
 
-  friendList = await getCurrentFriends(cursor);
-  friendListCount = friendList.friends.length;
+  friendList = await getCurrentFriends(cursor, count);
 
-  console.log(friendList, friendListCount);
+  console.log(friendList);
 }
 
-function getCurrentFriends(cursor) {
+async function unFollowOnePerson() {
+  let count = 1;
+  let cursor = -1;
+  let friendList;
+
+  friendList = await getCurrentFriends(cursor, count);
+
+  let friend = friendList.friends[0];
+
+  unfollowPerson(friend);
+}
+
+function getCurrentFriends(cursor, count) {
   return new Promise((resolve, reject) => {
-    T.get(
-      "friends/list",
-      { cursor: cursor, count: 200 },
-      function (err, data, response) {
-        if (err) reject(err);
+    T.get("friends/list", { cursor: cursor, count: count }, function (err, data, response) {
+      if (err) reject(err);
 
-        let namesAndIds = [];
-        let nextCursor = data.next_cursor;
+      let namesAndIds = [];
+      let nextCursor = data.next_cursor;
 
-        data.users.forEach((user) => {
-          namesAndIds.push({
-            id: user.id_str,
-            screen_name: user.screen_name,
-            following: user.following,
-          });
+      data.users.forEach((user) => {
+        namesAndIds.push({
+          id: user.id_str,
+          screen_name: user.screen_name,
+          following: user.following,
         });
+      });
 
-        resolve({ friends: namesAndIds, newCursor: nextCursor });
-      }
-    );
+      resolve({ friends: namesAndIds, newCursor: nextCursor });
+    });
   });
 }
 
@@ -230,12 +218,12 @@ function postRandomTweet(tweets) {
 }
 
 exports.postRandomTweet = postRandomTweet;
-exports.grabFollowingListAndRemoveNonFollowers =
-  grabFollowingListAndRemoveNonFollowers;
+exports.grabFollowingListAndRemoveNonFollowers = grabFollowingListAndRemoveNonFollowers;
 exports.getStatusAndAddToFriends = getStatusAndAddToFriends;
 exports.filterUsers = filterUsers;
 exports.unFollowPeople = unFollowPeople;
 exports.unfollowPerson = unfollowPerson;
+exports.unFollowOnePerson = unFollowOnePerson;
 exports.addFriend = addFriend;
 exports.getDataObject = getDataObject;
 exports.getCurrentFriends = getCurrentFriends;
