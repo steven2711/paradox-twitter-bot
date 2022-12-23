@@ -93,6 +93,8 @@ const day = 86400000;
 // note the start time
 //
 
+postRandomTweet(tweets);
+
 setInterval(() => {
   postRandomTweet(tweets);
 }, fiveHour);
